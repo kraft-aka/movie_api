@@ -1,10 +1,11 @@
+// Declare variables
+
 const http = require('http'),
 fs = require('fs'),
 url = require('url');
 
 
-const http = require('http');
-
+// Create a server
 http.createServer((request, response) => {
     let addr = request.url,
     q = url.parse(addr, true),
@@ -29,7 +30,7 @@ http.createServer((request, response) => {
             throw err;
         }
 
-        response.writeHead(200, { 'Content - Type': 'text/html'});
+        response.writeHead(200, { 'Content-Type': 'text/html'});
         response.write(data);
         response.end();
     });
