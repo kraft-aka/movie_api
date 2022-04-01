@@ -1,0 +1,26 @@
+{
+  "name": "movie-api",
+  "version": "1.0.0",
+  "description": "In this step I am to create a REST API for an application\r that interacts with a database that stores data about different movies.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kraft-aka/movie_api.git"
+  },
+  "keywords": [
+    "JavaScript"
+  ],
+  "author": "kubat aiupov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kraft-aka/movie_api/issues"
+  },
+  "homepage": "https://github.com/kraft-aka/movie_api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3"
+  }
+}
