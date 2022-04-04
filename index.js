@@ -3,6 +3,7 @@ const res = require("express/lib/response");
 const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
+const port = 8080;
 
 const app = express();
 
@@ -30,8 +31,8 @@ app.get("/movies", (req, res) => {
 });
 
 // port listener
-app.listen(8080, () => {
-  console.log("Your application is listening on Port 8080");
+app.listen(port || 8080, () => {
+  console.log(`App listening at http://localhost:${port}`);
 });
 
 // topTen Movies delete it later
