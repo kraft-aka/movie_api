@@ -3,6 +3,10 @@ const res = require("express/lib/response");
 const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
+const router = require('./routes/server');
+const routerUsers = require('./routes/users');
+const movies = require('./api/movies');
+const users = require('./api/userslist');
 
 const app = express();
 
@@ -20,70 +24,17 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
+app.use('/', router);
+app.use('/', routerUsers);
+
 // Get requests
 app.get("/", (req, res) => {
   res.send("Welcome to my Movie App!");
 });
 
-app.get("/movies", (req, res) => {
-  res.json(topTenMovies);
-});
 
 // port listener
 app.listen(8080, () => {
   console.log("Your application is listening on Port 8080");
 });
 
-// topTen Movies delete it later
-const topTenMovies = [
-    {
-        name: 'The Lord of the Rings',
-        genre: 'Fantasy',
-        id: 1
-    },
-    {
-        name: 'Aliens',
-        genre: 'Action',
-        id: 2
-    },
-    {
-        name: 'Toy Story',
-        genre: 'Animated',
-        id: 3
-    },
-    {
-        name: 'Duck Soup',
-        genre: 'Comedy',
-        id: 4
-    },
-    {
-        name: 'Casablanca',
-        genre: 'Romance',
-        id: 5
-    },
-    {
-        name: 'Rocky',
-        genre: 'Sports',
-        id: 6
-    },
-    {
-        name: 'Good Fellas',
-        genre: 'Crime',
-        id: 7
-    },
-    {
-        name: 'Taxi Driver',
-        genre: 'Drama',
-        id: 8
-    },
-    {
-        name: 'High Noon',
-        genre: 'Western',
-        id: 9
-    },
-    {
-        name: 'Airport',
-        genre: 'Disaster',
-        id: 10
-    }
-];
