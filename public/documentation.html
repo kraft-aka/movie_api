@@ -38,17 +38,45 @@
                     <td data-label="URL">/movies/:title</td>
                     <td data-label="HTTP Method">GET</td>
                     <td data-label="Request">None</td>
-                    <td data-label="Response">A JSON object holding data about selected movie, containing title, genre, description, etc. Example: 
+                    <td data-label="Response">A JSON object holding data about selected movie, containing title, genre, description, etc. 
                         <pre>
                             <code>{
                                     title: String, 
                                     genre: String, 
                                     description: String, 
-                                    director: {name: String}, 
-                                    {bio: String}},
+                                    director: {name: String,
+                                               bio: String 
+                                    },
                                     actors: [String],
                                     imageUrl: String,
                                     featured: boolean
+                                }
+                            </code>
+                        </pre>
+                        Example: 
+                        <pre>
+                            <code>{
+                                    title: 'The Lord of the Rings', 
+                                    genre: 'Fantasy', 
+                                    description: String, 
+                                    director: {name:'Peter Jackson',
+                                               bio: 'Sir Peter Robert 
+                                                 Jackson ONZ KNZM is a 
+                                                 New Zealand film director,
+                                                 screenwriter, and film 
+                                                 producer. He is best known
+                                                 as the director, writer, 
+                                                 and producer of the Lord 
+                                                 of the Rings trilogy and 
+                                                 the Hobbit trilogy, both 
+                                                 of which are adapted from 
+                                                 the novels of the same name 
+                                                 by J. R. R. Tolkien.' 
+                                    },
+                                    actors: 'Elijah Wood','Viggo Mortensen',
+                                    'Sean Astin','Orlando Bloom', etc.
+                                    imageUrl: String,
+                                    featured: true
                                 }
                             </code>
                         </pre>
@@ -59,11 +87,18 @@
                     <td data-label="URL">/movies/genre/:name</td>
                     <td data-label="HTTP Method">GET</td>
                     <td data-label="Request">None</td>
-                    <td data-label="Response">A JSON object holding data about selected movie, containing title, genre, description, etc. Example: 
+                    <td data-label="Response">A JSON object holding data about selected movie, containing title, genre, description, etc.  
                         <pre>
                             <code>{
-                                    title: String, 
                                     genre: String, 
+                                    description: String 
+                                    }
+                            </code>
+                        </pre>
+                        Example:
+                        <pre>
+                            <code>{
+                                    genre: 'Drama', 
                                     description: String 
                                     }
                             </code>
@@ -75,7 +110,7 @@
                     <td data-label="URL">/movies/director:name</td>
                     <td data-label="HTTP Method">GET</td>
                     <td data-label="Request">None</td>
-                    <td data-label="Response">A JSON object holding data about selected director. Example: 
+                    <td data-label="Response">A JSON object holding data about selected director. 
                         <pre>
                             <code>{
                                     name: String, 
@@ -85,31 +120,61 @@
                                  }
                             </code>
                         </pre>
+                        Example: 
+                        <pre>
+                            <code>{
+                                    name: 'James Cameron', 
+                                    bio: 'James Francis Cameron CC is a Canadian filmmaker.', 
+                                    birth: 1954/08/16, 
+                                    death: ---
+                                 }
+                            </code>
+                        </pre>
                 </td>
                 </tr>
                 <tr id="id-5">
                     <td data-label="Business Logic">Allow new users to register</td>
                     <td data-label="URL">/users</td>
                     <td data-label="HTTP Method">POST</td>
-                    <td data-label="Request">A JSON object holding data about the user to register. Example: 
+                    <td data-label="Request">A JSON object holding data about the user to register.  
                         <pre>
                             <code>
                                 { 
                                     username: String, 
-                                    email: String, 
+                                    favoriteMovies: []
                                 }
 
                                 </code>
                             </pre>
+                            Example:
+                            <pre>
+                                <code>
+                                    { 
+                                        username: 'John', 
+                                        favoriteMovies: []
+                                    }
+                                    </code>
+                                </pre>
                         </td>
-                    <td data-label="Response">A JSON object holding data about the user that was registered. Example: 
+                    <td data-label="Response">A JSON object holding data about the user that was registered. 
                         <pre>
                             <code>
                                {
                                    username: String, 
-                                   email: String, 
                                    id: Number
-                                   favorites: [
+                                   favoriteMovies: [
+                                   ...
+                                   ]
+                               } 
+                            </code>
+                        </pre>
+                        Example:
+                        <pre>
+                            <code>
+                               {
+                                   username: 'John', 
+                                   id: 1
+                                   favoriteMovies: [
                                    ...
                                    ]
                                } 
