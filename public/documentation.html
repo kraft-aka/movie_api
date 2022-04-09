@@ -4,10 +4,162 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <title>Documentation</title>
 </head>
 <body>
-    <h1>Documentation Page!</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut excepturi necessitatibus, optio quidem facilis animi eum architecto. Asperiores assumenda ipsum totam aut expedita consequatur minus, quis, ad fugit neque culpa?</p>
+    <h1>Documentation</h1>
+    <h4><em>Presented documentation holds the information about URL endpoints, reguests and responses.</em></h4>
+
+    <div class="table">
+        <table class="tb">
+            <thead>
+                <tr>
+                    <th>Business Logic</th>
+                    <th>URL</th>
+                    <th>HTTP Method</th>
+                    <th>Reguest</th>
+                    <th>Response</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="id-1">
+                    <td data-label="Business Logic">Return a list of ALL movies to the user</td>
+                    <td data-label="URL">/movies</td>
+                    <td data-label="HTTP Method">GET</td>
+                    <td data-label="Request">None</td>
+                    <td data-label="Response">A json object holding data about movies</td>
+                </tr>
+                <tr id="id-2">
+                    <td data-label="Business Logic">Return data about a single movie by title to the user</td>
+                    <td data-label="URL">/movies/:title</td>
+                    <td data-label="HTTP Method">GET</td>
+                    <td data-label="Request">None</td>
+                    <td data-label="Response">A JSON object holding data about selected movie, containing title, genre, description, etc. Example: 
+                        <pre>
+                            <code>{
+                                    title: String, 
+                                    genre: String, 
+                                    description: String, 
+                                    director: {name: String}, 
+                                    {bio: String}},
+                                    actors: [String],
+                                    imageUrl: String,
+                                    featured: boolean
+                                }
+                            </code>
+                        </pre>
+                </td>
+                </tr>
+                <tr id="id-3">
+                    <td data-label="Business Logic">Return data about a genre by title</td>
+                    <td data-label="URL">/movies/genre/:name</td>
+                    <td data-label="HTTP Method">GET</td>
+                    <td data-label="Request">None</td>
+                    <td data-label="Response">A JSON object holding data about selected movie, containing title, genre, description, etc. Example: 
+                        <pre>
+                            <code>{
+                                    title: String, 
+                                    genre: String, 
+                                    description: String 
+                                    }
+                            </code>
+                        </pre>
+                </td>
+                </tr>
+                <tr id="id-4">
+                    <td data-label="Business Logic">Return data about a director by name</td>
+                    <td data-label="URL">/movies/director:name</td>
+                    <td data-label="HTTP Method">GET</td>
+                    <td data-label="Request">None</td>
+                    <td data-label="Response">A JSON object holding data about selected director. Example: 
+                        <pre>
+                            <code>{
+                                    name: String, 
+                                    bio: String, 
+                                    birth: Date, 
+                                    death: Date
+                                 }
+                            </code>
+                        </pre>
+                </td>
+                </tr>
+                <tr id="id-5">
+                    <td data-label="Business Logic">Allow new users to register</td>
+                    <td data-label="URL">/users</td>
+                    <td data-label="HTTP Method">POST</td>
+                    <td data-label="Request">A JSON object holding data about the user to register. Example: 
+                        <pre>
+                            <code>
+                                { 
+                                    username: String, 
+                                    email: String, 
+                                }
+
+                                </code>
+                            </pre>
+                        </td>
+                    <td data-label="Response">A JSON object holding data about the user that was registered. Example: 
+                        <pre>
+                            <code>
+                               {
+                                   username: String, 
+                                   email: String, 
+                                   id: Number
+                                   favorites: [
+                                   ...
+                                   ]
+                               } 
+                            </code>
+                        </pre>
+                    </td>
+                </tr>
+                <tr id="id-6">
+                    <td data-label="Business Logic">Allow users to update their user info (username)</td>
+                    <td data-label="URL">/users/:username</td>
+                    <td data-label="HTTP Method">PUT</td>
+                    <td data-label="Request">None</td>
+                    <td data-label="Response">A text message indicating thatthe user info (userinfo) was updated</td>
+                </tr>
+                <tr id="id-7">
+                    <td data-label="Business Logic">Allow users to add a movie to their list of favorites</td>
+                    <td data-label="URL">/users/username/:movieId</td>
+                    <td data-label="HTTP Method">POST</td>
+                    <td data-label="Request">A JSON object holding data about movie to add to list of favorites. Example: <pre>
+                        <code>
+                            {
+                                id: Number
+                            }
+                        </code>
+                    </pre></td>
+                    <td data-label="Response">A JSON object holding data about the movie that was added to list of favorites</td>
+                </tr>
+                <tr id="id-8">
+                    <td data-label="Business Logic">Allow users to remove a movie from their list of favorites </td>
+                    <td data-label="URL">/users/username/:movie</td>
+                    <td data-label="HTTP Method">DELETE</td>
+                    <td data-label="Request">None</td>
+                    <td data-label="Response">A text message that a  movie was deleted from favorite list</td>
+                </tr>
+                <tr id="id-9">
+                    <td data-label="Business Logic">Allow existing users to deregister</td>
+                    <td data-label="URL">/users/:username</td>
+                    <td data-label="HTTP Method">DELETE</td>
+                    <td data-label="Request">None</td>
+                    <td data-label="Response">A text notification that user deregisterd</td>
+                </tr>
+            </tbody>
+
+        </table>
+        
+
+    </div>
+
+
+
+    
 </body>
 </html>
