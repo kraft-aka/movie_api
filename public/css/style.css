@@ -10,7 +10,7 @@
 body {
     margin: 0;
     font-family: 'Lato', sans-serif;
-    font-size: 14px;
+    font-size: 18px;
     color: var(--main-font-color);
 }
 
@@ -33,7 +33,7 @@ body {
     padding: 5px 10px;
     border:1px solid var(--light-gray-color);
     text-align: left;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 .tb tbody tr:nth-child(even) {
