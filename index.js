@@ -38,42 +38,52 @@ app.listen(8080, () => {
 const topTenMovies = [
     {
         name: 'The Lord of the Rings',
-        genre: 'Fantasy'
+        genre: 'Fantasy',
+        id: 1
     },
     {
         name: 'Aliens',
-        genre: 'Action'
+        genre: 'Action',
+        id: 2
     },
     {
         name: 'Toy Story',
-        genre: 'Animated'
+        genre: 'Animated',
+        id: 3
     },
     {
         name: 'Duck Soup',
-        genre: 'Comedy'
+        genre: 'Comedy',
+        id: 4
     },
     {
         name: 'Casablanca',
-        genre: 'Romance'
+        genre: 'Romance',
+        id: 5
     },
     {
         name: 'Rocky',
-        genre: 'Sports'
+        genre: 'Sports',
+        id: 6
     },
     {
         name: 'Good Fellas',
-        genre: 'Crime'
+        genre: 'Crime',
+        id: 7
     },
     {
         name: 'Taxi Driver',
-        genre: 'Drama'
+        genre: 'Drama',
+        id: 8
     },
     {
         name: 'High Noon',
-        genre: 'Western'
+        genre: 'Western',
+        id: 9
     },
     {
         name: 'Airport',
-        genre: 'Disaster'
+        genre: 'Disaster',
+        id: 10
     }
 ];
