@@ -7,17 +7,18 @@ const movies = require('../api/movies');
 
 
 
-
-// get all moives 
-router.get('/movies', (req, res)=> {
+//------READ-----//
+// get all moives              
+router.get('/movies', (req, res) => {
     res.status(200).json(movies);
 });
 
-// get movie by title
-router.get('/movies/:title',(req, res) => {
-    const {title} = req.params;
+//------READ-----//
+// get movie by title           
+router.get('/movies/:title', (req, res) => {
+    const { title } = req.params;
     const movie = movies.find(movie => movie.title.toLowerCase() === title);
-    
+
 
     if (movie) {
         res.status(200).json(movie);
@@ -26,11 +27,11 @@ router.get('/movies/:title',(req, res) => {
     }
 });
 
-// get movie by genre
-router.get('/movies/genre/:name',(req, res) => {
-    const {name} = req.params;
-    const genre = movies.find(movie => movie.genre.name.toLowerCase() === name).genre;
-    console.log(genre)
+//------READ-----//
+// get movie by genre            
+router.get('/movies/genre/:name', (req, res) => {
+    const { name } = req.params;
+    const genre = movies.find(movie => movie.genre.name.toLowerCase() === name.toLocaleLowerCase()).genre;
 
     if (genre) {
         res.status(200).json(genre);
@@ -39,11 +40,11 @@ router.get('/movies/genre/:name',(req, res) => {
     }
 });
 
-// get movie by directors name
-router.get('/movies/director/:name',(req, res) => {
-    const {name} = req.params;
-    const director = movies.find(movie => movie.director.name.toLowerCase() === name).director;
-    console.log(director)
+//------READ-----//
+// get movie by directors name   
+router.get('/movies/director/:name', (req, res) => {
+    const { name } = req.params;
+    const director = movies.find(movie => movie.director.name.toLowerCase() === name.toLowerCase()).director;
 
     if (director) {
         res.status(200).json(director);
