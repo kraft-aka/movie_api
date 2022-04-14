@@ -7,6 +7,8 @@ const router = require('./routes/server');
 const routerUsers = require('./routes/users');
 const movies = require('./api/movies');
 const users = require('./api/userslist');
+const swaggerUi = require('swagger-ui-express'),// init swagger
+swaggerDocument = require('./swagger.json');
 
 const app = express();
 
@@ -26,6 +28,15 @@ app.use((err, req, res, next) => {
 
 app.use('/', router);
 app.use('/', routerUsers);
+
+app.use(
+    '/api-docs',
+    swaggerUi.serve, 
+    swaggerUi.setup(swaggerDocument)
+  );
+
+
+
 
 // Get requests
 app.get("/", (req, res) => {
