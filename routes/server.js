@@ -9,9 +9,7 @@ const movies = require('../api/movies');
 
 //------READ-----//
 // get all moives              
-router.get('/movies', (req, res) => {
-    res.status(200).json(movies);
-});
+router.get('/movies', (req, res) => res.status(200).json(movies));
 
 //------READ-----//
 // get movie by title           
