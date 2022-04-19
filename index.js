@@ -3,7 +3,7 @@ const res = require("express/lib/response");
 const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
-const router = require('./routes/server');
+const router = require('./routes/movies');
 const routerUsers = require('./routes/users');
 const movies = require('./api/movies');
 const users = require('./api/userslist');
@@ -17,7 +17,7 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 // connect to DB 
-mongoose.connect('mongodb://localhost:27017/myFlixDB', {useNewURLParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://127.0.0.1/myFlixDB', {useNewURLParser: true, useUnifiedTopology: true});
 
 // init app
 const app = express();
