@@ -9,7 +9,17 @@ const movies = require('./api/movies');
 const users = require('./api/userslist');
 const swaggerUi = require('swagger-ui-express'),// init swagger
 swaggerDocument = require('./swagger.json');
+const mongoose = require('mongoose');
+const Models = require('./models.js');
 
+// references to model names created in models.js
+const Movies = Models.Movie;
+const Users = Models.User;
+
+// connect to DB 
+mongoose.connect('mongodb://localhost:27017/myFlixDB', {useNewURLParser: true, useUnifiedTopology: true});
+
+// init app
 const app = express();
 
 // create a write stream (in append mode)
