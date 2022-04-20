@@ -5,16 +5,13 @@ const uuid = require("uuid");
 const mongoose = require("mongoose");
 const Models = require("../models");
 
-//const users = require("../api/userslist");
-//const { User } = require("../models");
-
 // references to model names created in models.js
 const Movies = Models.Movie;
 const Users = Models.User;
 
 // connect to DB
 mongoose.connect("mongodb://127.0.0.1/myFlixDB", {
-  useNewURLParser: true,
+  useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
@@ -100,51 +97,55 @@ routerUsers.put("/users/:Username", (req, res) => {
 });
 
 //------CREATE-----//
-// add a movie
+// add a movie to favorite list
 routerUsers.post("/users/:Username/movies/:MovieID", (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username}, {
-      $push: { FavoriteMovies: req.params.MovieID }
-  },
-  { new: true },
-  (err, updatedUser)=> {
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+      $push: { FavoriteMovies: req.params.MovieID },
+    },
+    { new: true },
+    (err, updatedUser) => {
       if (err) {
-          console.error(err);
-          res.status(500).send('Error: ' + err);
+        console.error(err);
+        res.status(500).send("Error: " + err);
       } else {
-          res.json(updatedUser);
+        res.json(updatedUser);
       }
-  });
+    }
+  );
 });
 
 //------DELETE-----//
 // remove movie from favorite list
 routerUsers.delete("/users/:Username/movies/:MovieID", (req, res) => {
-  Users.findOneAndUpdate({ Username: req.params.Username}, {
-      $pull: { FavoriteMovies: req.params.MovieID }
-  },
-  { new: true },
-  (err, updatedUser)=> {
+  Users.findOneAndUpdate(
+    { Username: req.params.Username },
+    {
+      $pull: { FavoriteMovies: req.params.MovieID },
+    },
+    { new: true },
+    (err, updatedUser) => {
       if (err) {
-          console.error(err);
-          res.status(500).send('Error: ' + err);
+        console.error(err);
+        res.status(500).send("Error: " + err);
       } else {
-          res.json(updatedUser);
+        res.json(updatedUser);
       }
-  });
+    }
+  );
 });
 
 //------DELETE-----//
-// remove user 
+// remove user
 routerUsers.delete("/users/:Username", (req, res) => {
-  Users.findOneAndRemove({ Username: req.params.Username})
-    .then((user)=> {
-        if(!user) {
-            res.status(400).send(req.params.Username + ' was not found');
-        } else {
-            res.status(200).send(req.params.Username + ' was deleted');
-        }
-    });
-
+  Users.findOneAndRemove({ Username: req.params.Username }).then((user) => {
+    if (!user) {
+      res.status(400).send(req.params.Username + " was not found");
+    } else {
+      res.status(200).send(req.params.Username + " was deleted");
+    }
+  });
 });
 
 module.exports = routerUsers;
