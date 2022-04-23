@@ -3,13 +3,23 @@ const res = require("express/lib/response");
 const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
+const bodyParser = require('body-parser');
 const router = require("./routes/movies");
 const routerUsers = require("./routes/users");
-const swaggerUi = require("swagger-ui-express"), // init swagger
-  swaggerDocument = require("./swagger.json");
+const swaggerUi = require("swagger-ui-express"); // init swagger
+const swaggerDocument = require("./swagger.json");
+const passport = require('passport');
+require('./passport');
+
 
 // init app
 const app = express();
+
+// init body parser
+app.use(bodyParser.urlencoded({extended: true}));
+
+// import auth.js
+let auth = require('./auth')(app);
 
 // create a write stream (in append mode)
 // a "log.txt" file is created in root directory
