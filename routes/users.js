@@ -1,11 +1,13 @@
 const express = require("express");
 const routerUsers = express.Router();
 const bodyParser = require("body-parser");
+const passport = require('passport');
+require('../passport');
 const uuid = require("uuid");
 const mongoose = require("mongoose");
 const Models = require("../models");
 
-// references to model names created in models.js
+// defining document variables from DB
 const Movies = Models.Movie;
 const Users = Models.User;
 
@@ -15,12 +17,16 @@ mongoose.connect("mongodb://127.0.0.1/myFlixDB", {
   useUnifiedTopology: true,
 });
 
+// init body parser
 routerUsers.use(bodyParser.urlencoded({ extended: true }));
 routerUsers.use(bodyParser.json());
 
+// init auth
+let auth = require('../auth');
+
 //------CREATE-----//
 // create new user //
-routerUsers.post("/users", (req, res) => {
+routerUsers.post("/users",passport.authenticate('jwt',{ session: false}),(req, res) => {
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
@@ -48,7 +54,7 @@ routerUsers.post("/users", (req, res) => {
 });
 
 // get all users
-routerUsers.get("/users", (req, res) => {
+routerUsers.get("/users",passport.authenticate('jwt',{ session: false}), (req, res) => {
   Users.find()
     .then((users) => {
       res.status(201).json(users);
@@ -60,7 +66,7 @@ routerUsers.get("/users", (req, res) => {
 });
 
 // get a user by username
-routerUsers.get("/users/:Username", (req, res) => {
+routerUsers.get("/users/:Username", passport.authenticate('jwt',{ session: false}), (req, res) => {
   Users.findOne({ Username: req.params.Username })
     .then((user) => {
       res.json(user);
@@ -73,7 +79,7 @@ routerUsers.get("/users/:Username", (req, res) => {
 
 //------UPDATE-----//
 // update user
-routerUsers.put("/users/:Username", (req, res) => {
+routerUsers.put("/users/:Username", passport.authenticate('jwt',{ session: false}), (req, res) => {
   Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
@@ -98,7 +104,7 @@ routerUsers.put("/users/:Username", (req, res) => {
 
 //------CREATE-----//
 // add a movie to favorite list
-routerUsers.post("/users/:Username/movies/:MovieID", (req, res) => {
+routerUsers.post("/users/:Username/movies/:MovieID",passport.authenticate('jwt',{ session: false}), (req, res) => {
   Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
@@ -118,7 +124,7 @@ routerUsers.post("/users/:Username/movies/:MovieID", (req, res) => {
 
 //------DELETE-----//
 // remove movie from favorite list
-routerUsers.delete("/users/:Username/movies/:MovieID", (req, res) => {
+routerUsers.delete("/users/:Username/movies/:MovieID",passport.authenticate('jwt',{ session: false}), (req, res) => {
   Users.findOneAndUpdate(
     { Username: req.params.Username },
     {
@@ -138,7 +144,7 @@ routerUsers.delete("/users/:Username/movies/:MovieID", (req, res) => {
 
 //------DELETE-----//
 // remove user
-routerUsers.delete("/users/:Username", (req, res) => {
+routerUsers.delete("/users/:Username",passport.authenticate('jwt',{ session: false}), (req, res) => {
   Users.findOneAndRemove({ Username: req.params.Username }).then((user) => {
     if (!user) {
       res.status(400).send(req.params.Username + " was not found");

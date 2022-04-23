@@ -2,9 +2,13 @@ const express = require("express");
 const router = express.Router();
 const uuid = require("uuid");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const Models = require("../models");
+const passport = require('passport');
+require('../passport');
 const res = require("express/lib/response");
 
+// defining document variables from DB
 const Movies = Models.Movie;
 const Users = Models.User;
 
@@ -14,9 +18,16 @@ mongoose.connect("mongodb://127.0.0.1/myFlixDB", {
   useUnifiedTopology: true,
 });
 
+// init body parser
+router.use(bodyParser.urlencoded({ extended: true}));
+router.use(bodyParser.json());
+
+// init auth
+let auth = require('../auth');
+
 //------READ-----//
 // get all moives
-router.get("/movies", (req, res) => {
+router.get("/movies", passport.authenticate('jwt', { session: false }),(req, res) => {
   Movies.find()
     .then((movies) => {
       res.status(201).json(movies);
@@ -29,7 +40,7 @@ router.get("/movies", (req, res) => {
 
 //------READ-----//
 // get movie by title
-router.get("/movies/:Title", (req, res) => {
+router.get("/movies/:Title",passport.authenticate('jwt', { session: false }), (req, res) => {
   Movies.findOne({ Title: req.params.Title })
     .then((movie) => {
       res.status(201).json(movie);
@@ -42,7 +53,7 @@ router.get("/movies/:Title", (req, res) => {
 
 //------READ-----//
 // get movie by genre
-router.get("/movies/Genre/:Name", (req, res) => {
+router.get("/movies/Genre/:Name",passport.authenticate('jwt',{ session: false }), (req, res) => {
   Movies.findOne({ "Genre.Name": req.params.Name })
     .then((movies) => {
       res.status(201).json(movies.Genre);
@@ -55,7 +66,7 @@ router.get("/movies/Genre/:Name", (req, res) => {
 
 //------READ-----//
 // get data about director
-router.get("/movies/Director/:Name", (req, res) => {
+router.get("/movies/Director/:Name", passport.authenticate('jwt', { session: false}),(req, res) => {
   Movies.findOne({ "Director.Name": req.params.Name })
     .then((director) => {
       res.status(201).json(director.Director);
