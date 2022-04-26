@@ -27,9 +27,10 @@ let auth = require('../auth');
 //------CREATE-----//
 // create new user //
 routerUsers.post("/users",passport.authenticate('jwt',{ session: false}),(req, res) => {
-  Users.findOne({ Username: req.body.Username })
+  let hashedPassword = Users.hashPassword(req.body.Password); // create var for hashing password for new user
+  Users.findOne({ Username: req.body.Username }) //search to see if a user with the requested username already exists
     .then((user) => {
-      if (user) {
+      if (user) { // if the user is found, send a message that it already exists
         return res.status(400).send(req.body.Username + " already exists");
       } else {
         Users.create({
