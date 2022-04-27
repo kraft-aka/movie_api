@@ -1,0 +1,5 @@
+{"_id":{"$oid":"62597771eeb21d42100dd523"},"Username":"Amir Khan","Password":"9876","Email":"amirkhan@yahoo.com","Bithday":"1992-12-31","FavoriteMovies":[{"$oid":"62598251eeb21d42100dd52b"}],"ToWatch":[]}
+{"_id":{"$oid":"62597780eeb21d42100dd524"},"Username":"Teddy Rock","Password":"uuaa","Email":"teddyrock@yahoo.com","Bithday":"1987-10-01","FavoriteMovies":[{"$oid":"6259837aeeb21d42100dd52c"},{"$oid":"62597a41eeb21d42100dd526"}],"ToWatch":[]}
+{"_id":{"$oid":"62597793eeb21d42100dd525"},"Username":"Steven Ghery","Password":"ggss","Email":"stevenghery@hotmail.com","Bithday":"1965-11-29","FavoriteMovies":[{"$oid":"625984c3eeb21d42100dd52d"},{"$oid":"62596bf7eeb21d42100dd51d"},{"$oid":"62594bc7eeb21d42100dd51b"}],"ToWatch":[]}
+{"_id":{"$oid":"625f10d24c32678488fc6dcd"},"Username":"Test One","Password":"1234","Email":"testone@yahoo.com","Birthday":{"$date":"2000-01-01T00:00:00Z"},"FavoriteMovies":[],"__v":0,"ToWatch":[]}
+{"_id":{"$oid":"6263db3aed0f4599ed84033d"},"Username":"Tester One","Password":"test","Email":"tester@gmail.com","Birthday":{"$date":{"$numberLong":"-627264000000"}},"FavoriteMovies":[],"__v":0,"ToWatch":[]}
