@@ -15,7 +15,7 @@ const cors = require("cors");
 const port = process.env.PORT || 8080;
 
 // connect to DB local
-// mongoose.connect("mongodb://127.0.0.1/myFlixDB", {
+// mongoose.connect("mongodb+srv://kubat:kubat111282@myflixdb.d123r.mongodb.net/myFlixDB?retryWrites=true&w=majority", {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
