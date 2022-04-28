@@ -14,7 +14,7 @@
     "tags": [
       {
         "name": "Users",
-        "description": "API for users in the system"
+        "description": "API for users in myFlix"
       }
     ],
     "schemes": [
@@ -27,15 +27,15 @@
       "application/json"
     ],
     "paths": {
-      "/addUser": {
+      "/user": {
         "post": {
           "tags": [
             "Users"
           ],
-          "description": "Create new user in system",
+          "description": "Create new user in myFlix",
           "parameters": [
             {
-              "name": "user",
+              "user": "user",
               "in": "body",
               "description": "User that we want to create",
               "schema": {

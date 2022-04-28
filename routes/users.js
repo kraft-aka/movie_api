@@ -29,7 +29,7 @@ routerUsers.use(bodyParser.urlencoded({ extended: true }));
 routerUsers.use(bodyParser.json());
 
 // init auth
-let auth = require("../auth")(routerUsers);
+let auth = require("../auth");
 
 //------CREATE-----//
 // create new user //
@@ -53,7 +53,7 @@ routerUsers.post(
       return res.status(422).json({ errors: errors.array()});
     }
 
-    let hashedPassword = Users.hashedPassword(req.body.Password); // create var for hashing password for new user
+    let hashedPassword = Users.hashPassword(req.body.Password); // create var for hashing password for new user
     Users.findOne({ Username: req.body.Username }) //search to see if a user with the requested username already exists
       .then((user) => {
         if (user) {
@@ -134,6 +134,8 @@ routerUsers.put(
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array()});
     }
+
+    let hashedPassword = Users.hashPassword(req.body.Password);
 
     Users.findOneAndUpdate(
       { Username: req.params.Username },

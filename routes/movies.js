@@ -29,7 +29,7 @@ router.use(bodyParser.urlencoded({ extended: true}));
 router.use(bodyParser.json());
 
 // init auth
-let auth = require('../auth')(router);
+let auth = require('../auth');
 
 //------READ-----//
 // get all moives

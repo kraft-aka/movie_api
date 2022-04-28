@@ -33,7 +33,7 @@ userSchema.statics.hashPassword = (password) => {
 
 // function to validate users's password
 userSchema.methods.validatePassword = function(password){
-    return bcrypt.compareSync(password, this.password);
+    return bcrypt.compareSync(password, this.Password);
 }
 
 // define models variables
