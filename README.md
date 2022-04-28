@@ -72,7 +72,7 @@ user profiles.
 - nodemon
 
 ## Links
-For more information regarding the [Documentation](https://)
+For more information regarding the [Documentation](https://github.com/kraft-aka/movie_api/blob/main/public/documentation.html)
 
 
 
