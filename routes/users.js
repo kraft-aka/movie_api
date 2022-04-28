@@ -12,7 +12,6 @@ const { check, validationResult } = require("express-validator");
 const Movies = Models.Movie;
 const Users = Models.User;
 
-
 // init body parser
 routerUsers.use(bodyParser.urlencoded({ extended: true }));
 routerUsers.use(bodyParser.json());
@@ -39,7 +38,7 @@ routerUsers.post(
     let errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array()});
+      return res.status(422).json({ errors: errors.array() });
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password); // create var for hashing password for new user
@@ -121,7 +120,7 @@ routerUsers.put(
     let errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array()});
+      return res.status(422).json({ errors: errors.array() });
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);

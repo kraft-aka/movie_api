@@ -1,5 +1,5 @@
 const express = require("express");
-const jwtSecret = "your_jwt_secret"; // this has to be the same key used in the JWTStrategy
+const jwtSecret = "your_jwt_secret";
 
 const routerLogin = express.Router();
 const jwt = require("jsonwebtoken");

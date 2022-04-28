@@ -3,7 +3,7 @@ const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
 const bodyParser = require("body-parser");
-const router = require("./routes/movies");
+const routerMovies = require("./routes/movies");
 const routerUsers = require("./routes/users");
 const routerLogin = require("./auth");
 const mongoose = require("mongoose");
@@ -14,7 +14,7 @@ const cors = require("cors");
 
 const port = process.env.PORT || 8080;
 
-// connect to DB local
+// connect to DB local for local tests
 // mongoose.connect("mongodb+srv://kubat:kubat111282@myflixdb.d123r.mongodb.net/myFlixDB?retryWrites=true&w=majority", {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
@@ -34,20 +34,27 @@ mongoose
 const app = express();
 
 // define a list of allowed domains
-// let allowedOrigins = ['http://localhost:8080', 'http://testsite.com'];
+let allowedOrigins = [
+  "http://localhost:8080",
+  "https://movie-api-1112.herokuapp.com/",
+];
 
 // // set a cors for allowed domains
-// app.use(cors({
-//   origin: (origin, callback) => {
-//     if(!origin) return callback(null, true);
-//     if(allowedOrigins.indexOf(origin) === -1){
-//       // if a specific origin isn't found on the list of allowed origins
-//       let message = 'The CORS policy for this application doesn\'t allow access from origin ' + origin;
-//       return callback(new Error(message), false);
-//     }
-//     return callback(null,true);
-//   }
-// }));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        // if a specific origin isn't found on the list of allowed origins
+        let message =
+          "The CORS policy for this application doesn't allow access from origin " +
+          origin;
+        return callback(new Error(message), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 
 // init body parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -71,7 +78,7 @@ app.use((err, req, res, next) => {
 });
 
 // routers
-app.use("/", router);
+app.use("/", routerMovies);
 app.use("/", routerUsers);
 app.use("/", routerLogin);
 
