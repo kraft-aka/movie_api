@@ -12,17 +12,6 @@ const { check, validationResult } = require("express-validator");
 const Movies = Models.Movie;
 const Users = Models.User;
 
-// connect to DB local
-  // mongoose.connect("mongodb://127.0.0.1/myFlixDB", {
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true,
-  // });
-
-// connect to MongoDB Atlas
- mongoose.connect(process.env.CONNECTION_URI, {
-   useNewUrlParser: true,
-   useUnifiedTopology: true
- });
 
 // init body parser
 routerUsers.use(bodyParser.urlencoded({ extended: true }));

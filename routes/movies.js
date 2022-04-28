@@ -19,10 +19,10 @@ const Users = Models.User;
 //  });
 
 // connect to MongoDB Atlas
- mongoose.connect(process.env.CONNECTION_URI, {
-   useNewUrlParser: true,
-   useUnifiedTopology: true
- });
+//  mongoose.connect(process.env.CONNECTION_URI, {
+//    useNewUrlParser: true,
+//    useUnifiedTopology: true
+//  });
 
 // init body parser
 router.use(bodyParser.urlencoded({ extended: true}));

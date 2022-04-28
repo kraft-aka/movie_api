@@ -6,12 +6,26 @@ const bodyParser = require('body-parser');
 const router = require("./routes/movies");
 const routerUsers = require("./routes/users");
 const routerLogin = require('./auth');
+const mongoose = require('mongoose');
 const swaggerUi = require("swagger-ui-express"); 
 const swaggerDocument = require("./swagger.json");
 const passport = require('passport');
 const cors = require('cors');
 
 const port = process.env.PORT || 8080;
+
+// connect to DB local
+// mongoose.connect("mongodb://127.0.0.1/myFlixDB", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+// connect to MongoDB Atlas
+ mongoose.connect(process.env.CONNECTION_URI, {
+   useNewUrlParser: true,
+   useUnifiedTopology: true
+ });
+
 
 
 // init app
