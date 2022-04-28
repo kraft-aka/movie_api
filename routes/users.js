@@ -13,23 +13,23 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 // connect to DB local
-// mongoose.connect("mongodb://127.0.0.1/myFlixDB", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
+  // mongoose.connect("mongodb://127.0.0.1/myFlixDB", {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true,
+  // });
 
 // connect to MongoDB Atlas
-mongoose.connect(process.env.CONNECTION_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+ mongoose.connect(process.env.CONNECTION_URI, {
+   useNewUrlParser: true,
+   useUnifiedTopology: true
+ });
 
 // init body parser
 routerUsers.use(bodyParser.urlencoded({ extended: true }));
 routerUsers.use(bodyParser.json());
 
 // init auth
-let auth = require("../auth");
+let auth = require("../auth")(routerUsers);
 
 //------CREATE-----//
 // create new user //
@@ -42,19 +42,18 @@ routerUsers.post(
       "Username",
       "Username contains non alphanumerical characters-not allowed"
     ).isAlphanumeric(),
-    check("Password", "Password is required").isEmpty(),
+    check("Password", "Password is required").not().isEmpty(),
     check("Email", "Email is required").isEmail(),
   ],
-  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     // check the validation object for errors
     let errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array });
+      return res.status(422).json({ errors: errors.array()});
     }
 
-    let hashedPassword = Users.hashPassword(req.body.Password); // create var for hashing password for new user
+    let hashedPassword = Users.hashedPassword(req.body.Password); // create var for hashing password for new user
     Users.findOne({ Username: req.body.Username }) //search to see if a user with the requested username already exists
       .then((user) => {
         if (user) {
@@ -63,7 +62,7 @@ routerUsers.post(
         } else {
           Users.create({
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday,
           })
@@ -125,7 +124,7 @@ routerUsers.put(
       "Username",
       "Username contains non alphanumerical characters-not allowed"
     ).isAlphanumeric(),
-    check("Password", "Password is required").isEmpty(),
+    check("Password", "Password is required").not().isEmpty(),
     check("Email", "Email is requird").isEmail(),
   ],
   passport.authenticate("jwt", { session: false }),
@@ -133,7 +132,7 @@ routerUsers.put(
     let errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array });
+      return res.status(422).json({ errors: errors.array()});
     }
 
     Users.findOneAndUpdate(
@@ -141,7 +140,7 @@ routerUsers.put(
       {
         $set: {
           Username: req.body.Username,
-          Password: req.body.Password,
+          Password: hashedPassword,
           Email: req.body.Email,
           Birthday: req.body.Birthday,
         },

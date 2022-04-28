@@ -13,23 +13,23 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 // connect to DB
-// mongoose.connect("mongodb://127.0.0.1/myFlixDB", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
+//  mongoose.connect("mongodb://127.0.0.1/myFlixDB", {
+//    useNewUrlParser: true,
+//    useUnifiedTopology: true
+//  });
 
 // connect to MongoDB Atlas
-mongoose.connect(process.env.CONNECTION_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+ mongoose.connect(process.env.CONNECTION_URI, {
+   useNewUrlParser: true,
+   useUnifiedTopology: true
+ });
 
 // init body parser
 router.use(bodyParser.urlencoded({ extended: true}));
 router.use(bodyParser.json());
 
 // init auth
-let auth = require('../auth');
+let auth = require('../auth')(router);
 
 //------READ-----//
 // get all moives
