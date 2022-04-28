@@ -56,7 +56,7 @@ user profiles.
 
 ## Dependencies
 - node.js
-- bcrypt
+- bcryptjs
 - body-parser
 - cors
 - express
