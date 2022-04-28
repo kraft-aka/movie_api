@@ -2,15 +2,15 @@ const express = require("express");
 const morgan = require("morgan");
 const fs = require("fs");
 const path = require("path");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const router = require("./routes/movies");
 const routerUsers = require("./routes/users");
-const routerLogin = require('./auth');
-const mongoose = require('mongoose');
-const swaggerUi = require("swagger-ui-express"); 
+const routerLogin = require("./auth");
+const mongoose = require("mongoose");
+const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-const passport = require('passport');
-const cors = require('cors');
+const passport = require("passport");
+const cors = require("cors");
 
 const port = process.env.PORT || 8080;
 
@@ -21,13 +21,14 @@ const port = process.env.PORT || 8080;
 // });
 
 // connect to MongoDB Atlas
- mongoose.connect(process.env.CONNECTION_URI, {
-   useNewUrlParser: true,
-   useUnifiedTopology: true
- }).then(()=> console.log('Connected to the DB')).
- catch((error) => console.log(error));
-
-
+console.log(process.env.CONNECTION_URI, "===***********===");
+mongoose
+  .connect(process.env.CONNECTION_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to the DB"))
+  .catch((error) => console.log(error));
 
 // init app
 const app = express();
@@ -49,11 +50,11 @@ const app = express();
 // }));
 
 // init body parser
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // passport
-require('./passport');
+require("./passport");
 
 // create a write stream (in append mode)
 // a "log.txt" file is created in root directory
@@ -83,6 +84,6 @@ app.get("/", (req, res) => {
 });
 
 // port listener
-app.listen(port, '0.0.0.0',() => {
-  console.log('Listening on Port '+ port);
+app.listen(port, "0.0.0.0", () => {
+  console.log("Listening on Port " + port);
 });
