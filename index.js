@@ -9,7 +9,6 @@ const routerLogin = require("./auth");
 const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
-const passport = require("passport");
 const cors = require("cors");
 
 const port = process.env.PORT || 8080;
