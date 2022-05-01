@@ -59,6 +59,7 @@ user profiles.
 - bcryptjs
 - body-parser
 - cors
+- dotenv
 - express
 - express-validator
 - jsonwebtoken
