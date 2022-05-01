@@ -17,20 +17,20 @@ require('dotenv').config();
 const port = process.env.PORT;
 
 // connect to DB local for local tests
-mongoose.connect(process.env.LOCAL_CONNECTION_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+// mongoose.connect(process.env.LOCAL_CONNECTION_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 // connect to MongoDB Atlas
-// console.log(process.env.CONNECTION_URI, "===***********===");
-// mongoose
-//   .connect(process.env.CONNECTION_URI, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then(() => console.log("Connected to the DB"))
-//   .catch((error) => console.log(error));
+console.log(process.env.CONNECTION_URI, "===***********===");
+mongoose
+  .connect(process.env.CONNECTION_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to the DB"))
+  .catch((error) => console.log(error));
 
 // init app
 const app = express();
