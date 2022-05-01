@@ -5,6 +5,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const routerMovies = require("./routes/movies");
 const routerUsers = require("./routes/users");
+const routerActors = require('./routes/actors');
 const routerLogin = require("./auth");
 const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
@@ -81,6 +82,7 @@ app.use((err, req, res, next) => {
 // routers
 app.use("/", routerMovies);
 app.use("/", routerUsers);
+app.use('/', routerActors);
 app.use("/", routerLogin);
 
 // swagger documentation

@@ -6,7 +6,6 @@ const bodyParser = require("body-parser");
 const Models = require("../models");
 const passport = require("passport");
 require("../passport");
-const res = require("express/lib/response");
 
 // defining document variables from DB
 const Movies = Models.Movie;
