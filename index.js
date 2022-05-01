@@ -11,23 +11,25 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const cors = require("cors");
 
-const port = process.env.PORT || 8080;
+require('dotenv').config();
+
+const port = process.env.PORT;
 
 // connect to DB local for local tests
-// mongoose.connect("mongodb+srv://kubat:kubat111282@myflixdb.d123r.mongodb.net/myFlixDB?retryWrites=true&w=majority", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
+mongoose.connect(process.env.LOCAL_CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 // connect to MongoDB Atlas
-console.log(process.env.CONNECTION_URI, "===***********===");
-mongoose
-  .connect(process.env.CONNECTION_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to the DB"))
-  .catch((error) => console.log(error));
+// console.log(process.env.CONNECTION_URI, "===***********===");
+// mongoose
+//   .connect(process.env.CONNECTION_URI, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("Connected to the DB"))
+//   .catch((error) => console.log(error));
 
 // init app
 const app = express();
