@@ -39,6 +39,7 @@ const app = express();
 let allowedOrigins = [
   "http://localhost:8080",
   "https://movie-api-1112.herokuapp.com/",
+  "http://localhost:1234"
 ];
 
 // // set a cors for allowed domains
