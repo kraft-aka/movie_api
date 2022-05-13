@@ -35,12 +35,16 @@ mongoose
 // init app
 const app = express();
 
+
+// cross-origin-resource sharing
+app.use(cors());
+
 // define a list of allowed domains
-let allowedOrigins = [
-  "http://localhost:8080",
-  "https://movie-api-1112.herokuapp.com/",
-  "http://localhost:1234"
-];
+// let allowedOrigins = [
+//   "http://localhost:8080",
+//   "https://movie-api-1112.herokuapp.com/",
+//   "http://localhost:1234"
+// ];
 
 // set a cors for allowed domains
 // app.use(
