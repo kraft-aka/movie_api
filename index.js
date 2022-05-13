@@ -78,7 +78,18 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).send("Something broke!");
 });
+app.use((req,res, next) => {
+ // console.log(req.headers)
+  let token = req.headers.authorization.split(' ')[1];
+  console.log(token)
+  if (token === 'password') {
+    next();
+  } else {
+    res.status(403).json({msg: 'Not allowed'})
+  }
+})
 
+app.get('/hello', (req,res) => res.json({}))
 // routers
 app.use("/", routerMovies);
 app.use("/", routerUsers);
