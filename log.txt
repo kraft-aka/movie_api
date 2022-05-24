@@ -659,3 +659,6 @@ Timestamp: Wed Mar 30 2022 20:06:13 GMT+0200 (Central European Summer Time)
 127.0.0.1 - - [13/May/2022:10:14:55 +0000] "GET /favicon.ico HTTP/1.1" 500 1488 "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
 127.0.0.1 - - [13/May/2022:10:15:45 +0000] "GET /movies HTTP/1.1" 201 9239 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
 127.0.0.1 - - [13/May/2022:10:15:45 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:8080/movies" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
+127.0.0.1 - - [13/May/2022:10:20:14 +0000] "GET /users HTTP/1.1" 401 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
+127.0.0.1 - - [13/May/2022:10:20:14 +0000] "GET /users HTTP/1.1" 401 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
+127.0.0.1 - - [13/May/2022:10:20:23 +0000] "GET /movies HTTP/1.1" 201 9239 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36"
