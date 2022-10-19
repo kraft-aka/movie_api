@@ -24,7 +24,7 @@ app.use((err, req, res, next) => {
 // Get requests
 app.get("/", (req, res) => {
   res.send("Welcome to my Movie App!");
-});
+});gfhfgh
 
 app.get("/movies", (req, res) => {
   res.json(topTenMovies);
